@@ -13,4 +13,10 @@ test('renders user Bob', () => {
     const { getByText } = render(<UserTable users={users} />);
     const bobTextElement = getByText(/bob/i);
     expect(bobTextElement).toBeInTheDocument();
-})
+});
+
+test('renders No Users by default', () => {
+  const { getByText } = render(<UserTable />);
+  const NoUserTextElement = getByText(/no user/i);
+  expect(NoUserTextElement).toBeInTheDocument();
+});

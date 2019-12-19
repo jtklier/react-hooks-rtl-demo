@@ -23,12 +23,7 @@ const UserTable = ({ users }) => (
                 ))
             ) : (
                     <tr>
-                        <td>Name Data</td>
-                        <td>Username Data</td>
-                        <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                        </td>
+                        <td colSpan={3}>No Users</td>
                     </tr>
                 )}
         </tbody>
