@@ -9,7 +9,13 @@ test('renders app header', () => {
 });
 
 test('renders user table', () => {
-  const { getAllByText } = render(<App />);
-  const usernameHeaderElement = getAllByText(/username/i)[0];
+  const { getByTestId } = render(<App />);
+  const usernameHeaderElement = getByTestId('userTable');
   expect(usernameHeaderElement).toBeInTheDocument();
+});
+
+test('renders add user form', () => {
+  const { getByLabelText } = render(<App />);
+  const addUserInputElement = getByLabelText('username-input');
+  expect(addUserInputElement).toBeInTheDocument();
 });
