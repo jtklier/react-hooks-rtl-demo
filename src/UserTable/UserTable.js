@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserTable = ({ users }) => (
+const UserTable = ({ users, deleteUser }) => (
     <table data-testid="userTable">
         <thead>
             <tr>
@@ -17,7 +17,9 @@ const UserTable = ({ users }) => (
                         <td>{user.username}</td>
                         <td>
                             <button>Edit</button>
-                            <button>Delete</button>
+                            <button 
+                                aria-label={`delete-${user.name}-${user.id}`}
+                                onClick={() => deleteUser(user.id)}>Delete</button>
                         </td>
                     </tr>
                 ))
@@ -31,7 +33,8 @@ const UserTable = ({ users }) => (
 )
 
 UserTable.defaultProps = {
-    users: []
+    users: [],
+    deleteUser: () => {}
 }
 
 export default UserTable

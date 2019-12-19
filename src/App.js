@@ -17,6 +17,11 @@ function App() {
     setUsers([...users, user]);
   }
 
+  const deleteUser = id => {
+    const filteredUsers = users.filter(user => user.id !== id);
+    setUsers(filteredUsers);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -28,7 +33,7 @@ function App() {
       </section>
       <section>
         <h2>View Users</h2>
-        <UserTable users={users} />
+        <UserTable users={users} deleteUser={deleteUser} />
       </section>
     </div>
   );
