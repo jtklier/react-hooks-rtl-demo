@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const AddUserForm = () => {
+const AddUserForm = ({addUser}) => {
     const initialState = {id: null, name: '', username: ''};
     const [user, setUser] = useState(initialState);
 
@@ -11,6 +11,7 @@ const AddUserForm = () => {
 
     const handleOnSubmit = event => {
         event.preventDefault();
+        addUser(user);
         setUser(initialState);
     }
 
@@ -23,6 +24,10 @@ const AddUserForm = () => {
             <button>Add new user</button>
         </form>
     )
+}
+
+AddUserForm.defaultProps = {
+    addUser: () => {}
 }
 
 export default AddUserForm;

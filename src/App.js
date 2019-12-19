@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import UserTable from './UserTable';
 import AddUserForm from './AddUserForm';
 
 function App() {
+
+  const initialIdState = 1;
+  const [id, setId] = useState(initialIdState);
+
+  const initialUsersState = [];
+  const [users, setUsers] = useState(initialUsersState);
+
+
+  const addUser = user => {
+    user.id = id;
+    setId(id+1);
+    setUsers([...users, user]);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,11 +24,11 @@ function App() {
       </header>
       <section>
         <h2>Add User</h2>
-        <AddUserForm />
+        <AddUserForm addUser={addUser} />
       </section>
       <section>
         <h2>View Users</h2>
-        <UserTable />
+        <UserTable users={users} />
       </section>
     </div>
   );
