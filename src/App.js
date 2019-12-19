@@ -1,4 +1,5 @@
 import React from 'react';
+import UserTable from './UserTable';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       </section>
       <section>
         <h2>View Users</h2>
+        <UserTable />
       </section>
     </div>
   );
