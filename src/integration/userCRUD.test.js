@@ -30,19 +30,3 @@ test('User Table displays newly added users', () => {
 
     expect(getByText(username)).toBeInTheDocument();
 });
-
-test('clicking delete on Joe removes them from the table', () => {
-    const {addUserButton, nameInput, usernameInput, getByText, getByLabelText} = setup();
-    const user = {id: 1, name: 'Joe', username: 'Schmoe'};
-    
-    fireEvent.change(nameInput, {target: { value: user.name } })
-    fireEvent.change(usernameInput, {target: { value: user.username } })
-
-    fireEvent.click(addUserButton);
-
-    const joeDeleteButtonElement = getByLabelText(`delete-${user.name}-${user.id}`);
-
-    fireEvent.click(joeDeleteButtonElement);
-  
-    expect(getByText(/no user/i)).toBeInTheDocument();
-  });

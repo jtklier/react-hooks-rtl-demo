@@ -1,33 +1,47 @@
-import React, {useState} from 'react';
+import React, { useState, Component } from 'react';
 
-const AddUserForm = ({addUser}) => {
-    const initialState = {id: null, name: '', username: ''};
-    const [user, setUser] = useState(initialState);
+class AddUserForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {
+                id: null,
+                name: '',
+                username: ''
+            }
+        }
 
-    const handleInputChange = event => {
+        this.addUser = props.addUser.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    }
+
+    handleInputChange(event) {
         const { name, value } = event.target;
-        setUser({...user, [name]: value});
+        this.setState({ user: {...this.state.user, [name]: value }});
     }
 
-    const handleOnSubmit = event => {
+    handleOnSubmit(event) {
         event.preventDefault();
-        addUser(user);
-        setUser(initialState);
+        this.addUser(this.state.user);
+        this.setState({user: { id: null, name: '', username: '' }});
     }
 
-    return (
-        <form onSubmit={handleOnSubmit}>
-            <label>Name</label>
-            <input type="text" name="name" aria-label="name-input" value={user.name} onChange={handleInputChange} />
-            <label>Username</label>
-            <input type="text" name="username" aria-label="username-input" value={user.username} onChange={handleInputChange} />
-            <button>Add new user</button>
-        </form>
-    )
+    render() {
+        return (
+            <form onSubmit={this.handleOnSubmit}>
+                <label>Name</label>
+                <input type="text" name="name" aria-label="name-input" value={this.state.user.name} onChange={this.handleInputChange} />
+                <label>Username</label>
+                <input type="text" name="username" aria-label="username-input" value={this.state.user.username} onChange={this.handleInputChange} />
+                <button>Add new user</button>
+            </form>
+        )
+    }
 }
 
 AddUserForm.defaultProps = {
-    addUser: () => {}
+    addUser: () => { }
 }
 
 export default AddUserForm;
