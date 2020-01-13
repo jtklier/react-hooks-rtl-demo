@@ -46,3 +46,29 @@ test('clicking delete on Joe removes them from the table', () => {
   
     expect(getByText(/no user/i)).toBeInTheDocument();
   });
+
+  test('editing username for Henry and saving properly updates the table', async () => {
+    const {addUserButton, nameInput, usernameInput, getByText, getByLabelText} = setup();
+    const user = {id: 1, name: 'Henry', username: 'Ford'};
+    const differentUsername = 'MustangMan63';
+    
+    fireEvent.change(nameInput, {target: { value: user.name } })
+    fireEvent.change(usernameInput, {target: { value: user.username } })
+
+    fireEvent.click(addUserButton);
+
+    const henryEditButtonElement = getByLabelText(`edit-${user.name}-${user.id}`);
+
+    fireEvent.click(henryEditButtonElement);
+
+    const henryEditUsernameInput = getByLabelText(`edit-${user.username}-${user.id}-input`);
+
+    fireEvent.change(henryEditUsernameInput, { target: { value: differentUsername }});
+  
+    const henrySaveButtonElement = getByLabelText(`save-${user.name}-${user.id}`);
+
+    fireEvent.click(henrySaveButtonElement);
+
+    expect(henryEditUsernameInput).not.toBeInTheDocument();
+    expect(getByText(differentUsername)).toBeInTheDocument();
+  });
