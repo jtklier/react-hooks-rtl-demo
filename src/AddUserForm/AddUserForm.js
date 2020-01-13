@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 const AddUserForm = ({addUser}) => {
-    const initialState = {id: null, name: '', username: ''};
+    const initialState = {name: '', username: ''};
     const [user, setUser] = useState(initialState);
 
     const handleInputChange = event => {
