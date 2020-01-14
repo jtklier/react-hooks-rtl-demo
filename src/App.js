@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, createContext} from 'react';
 import UserTable from './UserTable';
 import AddUserForm from './AddUserForm';
+
+export const SaveUserContext = createContext();
+export const UserBeingEditedContext = createContext();
 
 function App() {
 
@@ -47,7 +50,11 @@ function App() {
       </section>
       <section>
         <h2>View Users</h2>
-        <UserTable users={users} editUser={editUser} saveUser={saveUser} deleteUser={deleteUser} userBeingEdited={userBeingEdited} />
+        <SaveUserContext.Provider value={saveUser}>
+          <UserBeingEditedContext.Provider value={userBeingEdited}>
+            <UserTable users={users} editUser={editUser} deleteUser={deleteUser} userBeingEdited={userBeingEdited} />
+          </UserBeingEditedContext.Provider>
+        </SaveUserContext.Provider>
       </section>
     </div>
   );

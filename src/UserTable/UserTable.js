@@ -1,7 +1,7 @@
 import React from 'react';
 import EditUserRow from './editUserRow/EditUserRow';
 
-const UserTable = ({ users, editUser, deleteUser, saveUser, userBeingEdited }) => (
+const UserTable = ({ users, editUser, deleteUser, userBeingEdited }) => (
     <table data-testid="userTable">
         <thead>
             <tr>
@@ -27,7 +27,7 @@ const UserTable = ({ users, editUser, deleteUser, saveUser, userBeingEdited }) =
                     </tr>
                 ) :
                     user.id === userBeingEdited ? (
-                        <EditUserRow key={user.id} originalUser={user} saveUser={saveUser} />
+                        <EditUserRow key={user.id} originalUser={user} />
                     ) : (
                             <tr key={user.id}>
                                 <td>{user.name}</td>
@@ -47,8 +47,7 @@ const UserTable = ({ users, editUser, deleteUser, saveUser, userBeingEdited }) =
 UserTable.defaultProps = {
     users: [],
     editUser: () => { },
-    deleteUser: () => { },
-    saveUser: () => { }
+    deleteUser: () => { }
 }
 
 export default UserTable
