@@ -52,7 +52,7 @@ function App() {
         <h2>View Users</h2>
         <SaveUserContext.Provider value={saveUser}>
           <UserBeingEditedContext.Provider value={userBeingEdited}>
-            <UserTable users={users} editUser={editUser} deleteUser={deleteUser} userBeingEdited={userBeingEdited} />
+            <UserTable users={users} editUser={editUser} deleteUser={deleteUser} />
           </UserBeingEditedContext.Provider>
         </SaveUserContext.Provider>
       </section>

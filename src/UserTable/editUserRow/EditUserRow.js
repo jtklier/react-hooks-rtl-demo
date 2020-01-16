@@ -3,6 +3,8 @@ import { SaveUserContext, UserBeingEditedContext } from '../../App';
 
 const EditUserRow = ({ originalUser }) => {
     const saveUser = useContext(SaveUserContext);
+    const userBeingEdited = useContext(UserBeingEditedContext);
+
     const [user, setUser] = useState(originalUser);
 
     const handleInputChange = event => {
@@ -26,14 +28,9 @@ const EditUserRow = ({ originalUser }) => {
             <td>
                 <button onClick={handleOnSubmit} aria-label={`save-${user.name}-${user.id}`}>Save</button>
             </td>
-            <UserBeingEditedContext.Consumer>
-                {userBeingEdited => (
-                    <td>
-                        User id currently being edited is {userBeingEdited}
-                    </td>
-                )
-                }
-            </UserBeingEditedContext.Consumer>
+            <td>
+                User id currently being edited is {userBeingEdited}
+            </td>
         </tr>
     )
 }
